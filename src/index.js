@@ -2,16 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import Card from './Card';
+import CardList from './CardList';
 import 'tachyons';
 import { robots } from './robots';
 
 ReactDOM.render(
-    <div>
-    <Card id={robots[0].id} name={robots[0].name} email={robots[0].name}/> 
-    <Card id={robots[1].id} name={robots[1].name} email={robots[1].name}/> 
-    <Card id={robots[2].id} name={robots[2].name} email={robots[2].name}/> 
-    </div>,
+    <CardList users={robots} />,
     document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
