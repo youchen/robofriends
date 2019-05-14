@@ -3,6 +3,7 @@ import SearchField from './SearchField';
 import CardList from './CardList';
 import { robots } from './robots';
 import 'tachyons';
+import './App.css'
 
 class App extends Component {
     constructor () {
@@ -20,7 +21,7 @@ class App extends Component {
     render () {
         const filteredRobots = this.state.robotsOnScreen.filter(bot => {
             let searchText = this.state.SearchField.toLowerCase();
-            
+
             return bot.name.toLowerCase().includes(searchText) || 
             bot.email.toLowerCase().includes(searchText);
         });
