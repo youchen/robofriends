@@ -1,31 +1,36 @@
 import React, { Component } from 'react';
-import SearchField from './SearchField';
-import CardList from './CardList';
+import SearchField from '../components/SearchField';
+import CardList from '../components/CardList';
 import 'tachyons';
 import './App.css';
-import Scroll from './Scroll';
+import Scroll from '../components/Scroll';
 
 class App extends Component {
     constructor () {
         super();
         this.state = {
-            SearchField : '',
+            SearchFieldText : '',
             robotsOnScreen : []
         }
     }
 
     SearchInputChange = (event) => {
-        this.setState({SearchField : event.target.value});
+        this.setState({SearchFieldText : event.target.value});
     }
 
     render () {
-        const filteredRobots = this.state.robotsOnScreen.filter(bot => {
-            let searchText = this.state.SearchField.toLowerCase();
+        const { SearchFieldText, robotsOnScreen } = this.state;
+        
+        const filteredRobots = robotsOnScreen.filter(bot => {
+            let searchText = SearchFieldText.toLowerCase();
 
             return bot.name.toLowerCase().includes(searchText) || 
             bot.email.toLowerCase().includes(searchText);
         });
-        return (
+
+        return !robotsOnScreen.length ?
+        <h2>loading...</h2> :
+        (
             <div className='tc'>
                 <h1 className='f1'>RoboFriends</h1>
                 <SearchField searchChange={this.SearchInputChange}/>
